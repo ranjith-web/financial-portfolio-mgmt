@@ -56,3 +56,6 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
         Dashboard: Navigate to /dashboard to view portfolio information and trends.
         Investment Form: Navigate to /forms to input new investment details.
+
+    Branch:
+        Use `main` branch for latest code
