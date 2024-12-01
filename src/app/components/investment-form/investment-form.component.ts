@@ -16,6 +16,7 @@ import { ReviewModalComponent } from '../review-modal/review-modal.component';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
+import { Asset, MarketTrend, ReviewData } from '../../models/models';
 
 @Component({
   selector: 'app-investment-form',
@@ -34,10 +35,10 @@ import { MatSelectModule } from '@angular/material/select';
 })
 export class InvestmentFormComponent {
   investmentForm: FormGroup;
-  reviewData: any;
+  reviewData: ReviewData | null = null;
 
-  assetAllocation$: Observable<any[]>;
-  marketTrends$: Observable<any[]>;
+  assetAllocation$: Observable<Asset[]>;
+  marketTrends$: Observable<MarketTrend[]>;
 
   constructor(
     private fb: FormBuilder,
@@ -81,25 +82,24 @@ export class InvestmentFormComponent {
   }
 
   confirmSubmission() {
-    debugger;
-    const newAssetValue = this.reviewData.quantity * this.reviewData.purchasePrice;
+    const newAssetValue = this.reviewData!.quantity * this.reviewData!.purchasePrice;
   
     // Extract month and year from the purchaseDate
-    const purchaseDate = new Date(this.reviewData.purchaseDate);
+    const purchaseDate = new Date(this.reviewData!.purchaseDate);
     const purchaseMonthYear = `${purchaseDate.toLocaleString('default', { month: 'short' })} ${purchaseDate.getFullYear()}`;
     const [month, year] = purchaseMonthYear.split(' ');
     
     // Update Asset Allocation
     this.store.select(selectAssetAllocation).pipe(take(1)).subscribe((currentAllocation) => {
       const updatedAssetAllocation = currentAllocation.map((asset) =>
-        asset.name === this.reviewData.assetType
+        asset.name === this.reviewData!.assetType
           ? { ...asset, value: asset.value + newAssetValue } // Create a new object with the updated value
           : asset
       );
 
       // If asset doesn't exist, add it to the array
-      if (!updatedAssetAllocation.find((asset) => asset.name === this.reviewData.assetType)) {
-        updatedAssetAllocation.push({ name: this.reviewData.assetType, value: newAssetValue });
+      if (!updatedAssetAllocation.find((asset) => asset.name === this.reviewData!.assetType)) {
+        updatedAssetAllocation.push({ name: this.reviewData!.assetType, value: newAssetValue });
       }
 
       // Dispatch updated asset allocation

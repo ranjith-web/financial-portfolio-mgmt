@@ -12,6 +12,7 @@ import { selectAssetAllocation, selectMarketTrends } from '../../store/selectors
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppHttpInterceptor } from '../../services/http.interceptor';
 import { loadAssetAllocation, loadMarketTrends } from '../../store/actions/portfolio.actions';
+import { Asset, MarketTrend } from '../../models/models';
 
 @Component({
   selector: 'app-dashboard',
@@ -33,9 +34,9 @@ import { loadAssetAllocation, loadMarketTrends } from '../../store/actions/portf
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent implements OnInit {
-  assetAllocation$!: Observable<any[]>;
-  marketTrends$!: Observable<any[]>;
-  view: [number, number]; // For responsive chart dimensions
+  assetAllocation$!: Observable<Asset[]>;
+  marketTrends$!: Observable<MarketTrend[]>;
+  view: [number, number];
 
 
   constructor(private store: Store) {
@@ -62,8 +63,7 @@ export class DashboardComponent implements OnInit {
 
   // Listen for window resize to adjust chart dimensions
   @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    const width = event.target.innerWidth;
+  onResize(event: UIEvent) {
     this.view = this.calculateView(); // Adjust chart width dynamically
   }
 

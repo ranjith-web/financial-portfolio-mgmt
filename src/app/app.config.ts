@@ -10,7 +10,6 @@ import { portfolioReducer } from './store/reducers/portfolio.reducer';
 import { PortfolioEffects } from './store/effects/portfolio.effects';
 
 
-
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes), 
