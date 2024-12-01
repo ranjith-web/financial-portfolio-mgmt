@@ -67,7 +67,7 @@ export class DashboardComponent implements OnInit {
     this.view = this.calculateView(); // Adjust chart width dynamically
   }
 
-  private calculateView(): [number, number] {
+  calculateView(): [number, number] {
     const width = Math.min(window.innerWidth * 0.45, 600); // Max chart width of 600px
     const height = 400; // Fixed chart height
     return [width, height];

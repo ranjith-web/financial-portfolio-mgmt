@@ -1,29 +1,43 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { By } from '@angular/platform-browser';
 
 describe('AppComponent', () => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppComponent],
+      imports: [
+        AppComponent, // Standalone component
+        RouterTestingModule, // Mocked router for testing
+      ],
     }).compileComponents();
-  });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
-
-  it(`should have the 'financial-portfolio-mgmt' title`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('financial-portfolio-mgmt');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
     fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, financial-portfolio-mgmt');
+  });
+
+  it('should create the component', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should have the correct title', () => {
+    expect(component.title).toBe('Financial Portfolio');
+  });
+
+  it('should render the toolbar with the application title', () => {
+    const toolbarElement = fixture.debugElement.query(By.css('mat-toolbar'));
+    expect(toolbarElement).toBeTruthy();
+
+    const titleElement = toolbarElement.nativeElement.textContent.trim();
+    expect(titleElement).toContain('Financial Portfolio');
+  });
+
+  it('should render navigation buttons', () => {
+    const buttonElements = fixture.debugElement.queryAll(By.css('button'));
+    expect(buttonElements.length).toBeGreaterThan(0); // Ensure at least one button exists
   });
 });

@@ -43,7 +43,7 @@ export class InvestmentFormComponent {
     private fb: FormBuilder,
     private store: Store,
     private dialog: MatDialog,
-    private router: Router,
+    public router: Router,
     private snackBar: MatSnackBar
   ) {
     this.investmentForm = this.fb.group({
