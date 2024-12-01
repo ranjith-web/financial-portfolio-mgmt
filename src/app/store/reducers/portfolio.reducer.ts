@@ -18,32 +18,20 @@ export const initialState: PortfolioState = {
 
 export const portfolioReducer = createReducer(
     initialState,
-    on(loadAssetAllocationSuccess, (state, { assetAllocation }) => {
-        debugger
-        return {
-            ...state,
-            assetAllocation,
-        }
-    }),
-    on(loadMarketTrendsSuccess, (state, { marketTrends }) => {
-        debugger;
-        return{
-            ...state,
-            marketTrends,
-        }
-    }),
-    on(updateAssetAllocation, (state, { assetAllocation }) => {
-        debugger;
-        return {
-            ...state,
-            assetAllocation,
-        }
-    }),
-    on(updateMarketTrends, (state, { marketTrends }) => {
-        debugger;
-        return {
-            ...state,
-            marketTrends,
-        }
-    })
+    on(loadAssetAllocationSuccess, (state, { assetAllocation }) => ({
+        ...state,
+        assetAllocation,
+    })),
+    on(loadMarketTrendsSuccess, (state, { marketTrends }) => ({
+        ...state,
+        marketTrends,
+    })),
+    on(updateAssetAllocation, (state, { assetAllocation }) => ({
+        ...state,
+        assetAllocation,
+    })),
+    on(updateMarketTrends, (state, { marketTrends }) => ({
+        ...state,
+        marketTrends,
+    }))
 );

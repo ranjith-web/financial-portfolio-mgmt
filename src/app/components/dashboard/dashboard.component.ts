@@ -68,8 +68,17 @@ export class DashboardComponent implements OnInit {
   }
 
   calculateView(): [number, number] {
-    const width = Math.min(window.innerWidth * 0.45, 600); // Max chart width of 600px
-    const height = 400; // Fixed chart height
+    // const width = Math.min(window.innerWidth * 0.45, 600); // Max chart width of 600px
+    // const height = 400; // Fixed chart height
+    // return [width, height];
+    const width = window.innerWidth <= 600
+    ? window.innerWidth * 0.85  // 85% of screen width for small screens
+    : Math.min(window.innerWidth * 0.45, 600); // Max 600px for larger screens
+
+    const height = window.innerWidth <= 600
+      ? 300 // Adjust chart height for smaller screens
+      : 400; // Default height for larger screens
+
     return [width, height];
   }
 }
