@@ -1,0 +1,14 @@
+<h2 mat-dialog-title>Review Your Details</h2>
+<mat-dialog-content>
+    <div>
+        <p><strong>Asset Type:</strong> {{ data.assetType }}</p>
+        <p><strong>Quantity:</strong> {{ data.quantity }}</p>
+        <p><strong>Purchase Price:</strong> {{ data.purchasePrice | currency }}</p>
+        <p><strong>Purchase Date:</strong> {{ data.purchaseDate | date: 'shortDate' }}</p>
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button mat-button (click)="onCancel()">Cancel</button>
+    <button mat-raised-button color="primary" (click)="onConfirm()">Confirm</button>
+</mat-dialog-actions>

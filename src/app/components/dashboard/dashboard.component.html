@@ -1,0 +1,25 @@
+<div class="dashboard">
+  <mat-card class="chart-card">
+    <h2>Asset Allocation</h2>
+    <ngx-charts-pie-chart
+      [results]="assetAllocation$ | async"
+      [view]="view"
+      [legend]="true"
+      [labels]="true"
+      [animations]="true">
+    </ngx-charts-pie-chart>
+  </mat-card>
+
+  <mat-card class="chart-card">
+    <h2>Market Trends</h2>
+    <ngx-charts-line-chart
+      [results]="marketTrends$ | async"
+      [view]="view"
+      [xAxis]="true"
+      [yAxis]="true"
+      [legend]="true"
+      [timeline]="true"
+      [animations]="true">
+    </ngx-charts-line-chart>
+  </mat-card>
+</div>

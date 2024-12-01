@@ -1,0 +1,33 @@
+mat-dialog-actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
+}
+  
+mat-dialog-actions button {
+    width: 100px; /* Set a specific width for the buttons */
+    font-size: 14px; /* Adjust font size */
+    padding: 8px; /* Adjust padding */
+}
+  
+/* Apply different styles to Cancel and Confirm buttons */
+mat-dialog-actions button[mat-button] {
+    background-color: #f1f1f1; /* Background color for Cancel button */
+    color: #000; /* Text color */
+}
+  
+mat-dialog-actions button[mat-raised-button] {
+    background-color: #007bff; /* Background color for Confirm button */
+    color: white; /* Text color */
+    font-weight: bold;
+}
+  
+/* Hover effect for Confirm and Cancel buttons */
+mat-dialog-actions button[mat-button]:hover {
+    background-color: #e0e0e0;
+}
+  
+mat-dialog-actions button[mat-raised-button]:hover {
+    background-color: #0056b3;
+}
+  
